@@ -4,41 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>HomeWork 5</title>
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
+    <img src="assets/images/llcoolj.png">
+    <h1>Hip Hop Trivia!!</h1>
     <div id="gameStart">
+        <p>Press to start</p>
         <button id="start">Start</button>
     </div>  
 
     <div id="game">
+        <p>Time Left:</p><div id="display">1:00</div>
         <form>
-            <p>q1</p>
-            <input type="radio" name="q1" value="1" > right<br>
-            <input type="radio" name="q1" value="0"> wrong<br>
-            <input type="radio" name="q1" value="0"> wrong
+            <p>Who is this legendary rap group that won an academy award for best original song in 2006?</p>
+            <input type="radio" name="q1" value="0"> D-12<br>
+            <input type="radio" name="q1" value="1" > Three Six Mafia<br>
+            <input type="radio" name="q1" value="0"> Wu Tang Clan<br>
+            <input type="radio" name="q1" value="0"> A Tribe Called Quest
         </form>
         <form>
-            <p>q2</p>
-            <input type="radio" name="q2" value="1" > right<br>
-            <input type="radio" name="q2" value="0"> wrong<br>
-            <input type="radio" name="q2" value="0"> wrong
+            <p>Who had an album 'The Red Light District' ?</p>
+            <input type="radio" name="q2" value="0"> Dr Dre. <br>
+            <input type="radio" name="q2" value="0"> Chingy<br>
+            <input type="radio" name="q2" value="0"> Eminem<br>
+            <input type="radio" name="q2" value="1" > Ludachris
+
         </form>
         <form>            
-            <p>q3</p>
-            <input type="radio" name="q3" value="1" > right<br>
-            <input type="radio" name="q3" value="0"> wrong<br>
-            <input type="radio" name="q3" value="0"> wrong
+            <p>Which record label featured artists such as Dr. Dre, Tupac, and Snoop Dogg?</p>
+            <input type="radio" name="q3" value="0"> Murder Inc. <br>
+            <input type="radio" name="q3" value="0"> Roc-A-Fella<br>
+            <input type="radio" name="q3" value="0"> Aftermath<br>
+            <input type="radio" name="q3" value="1" > Death Row
+        </form>
+        <form>            
+            <p>Andre Young is better known as which rapper?</p>
+            <input type="radio" name="q4" value="0"> 50 Cent <br>
+            <input type="radio" name="q4" value="0"> Jay-Z<br>
+            <input type="radio" name="q4" value="1"> Dr. Dre<br>
+            <input type="radio" name="q4" value="0" > Kanye West
+        </form>
+        <form>            
+            <p>What was the name of Jay-Z's first album?
+                </p>
+            <input type="radio" name="q5" value="0"> Blueprint<br>
+            <input type="radio" name="q5" value="1"> Reasonable Doubt<br>
+            <input type="radio" name="q5" value="0"> The Life and Time of Sean Carter<br>
+            <input type="radio" name="q5" value="0" > The Black Album
+        </form>
+        <form>            
+            <p>Complete this Biggie Smalls line from the song "Juicy". "I let my tape rock 'til my tape _______"</p>
+            <input type="radio" name="q6" value="0"> Rocked <br>
+            <input type="radio" name="q6" value="0"> Dropped<br>
+            <input type="radio" name="q6" value="1"> Popped<br>
+            <input type="radio" name="q6" value="0" > Stopped
+        </form>
+        <form>            
+            <p>Which artist is the 'King of Trill?' </p>
+            <input type="radio" name="q7" value="0"> Heavy D <br>
+            <input type="radio" name="q7" value="0"> Jay-Z<br>
+            <input type="radio" name="q7" value="0"> Juicy J<br>
+            <input type="radio" name="q7" value="1" > Bun B
+        </form>
+        <form>            
+            <p>Which of these four rappers is not from the South?</p>
+            <input type="radio" name="q8" value="1"> Mike D <br>
+            <input type="radio" name="q8" value="0"> Mike Jones<br>
+            <input type="radio" name="q8" value="0"> Big Boi<br>
+            <input type="radio" name="q8" value="0" > Lil Wayne
         </form>
 
-        <div id="display">00:00</div>
 
     </div>
 
     <div id="endGame">
-        game done
+        <h1>FINISHED!!</h1>>
         <span>Correct Answers: </span><span id="correct"></span>
         <span><br>Inorrect Answers: </span><span id="incorrect"></span>
         <span><br>Unanswered: </span><span id="unanswered"></span>

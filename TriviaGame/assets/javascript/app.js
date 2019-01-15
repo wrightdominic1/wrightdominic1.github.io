@@ -1,14 +1,13 @@
 //timer
 window.onload = function() {
     $("#start").on("click", start);
+    $("#submit").on("click", submit);
 };
 
-//  Variable that will hold our setInterval that runs the stopwatch
 var intervalId;
 
-// prevents the clock from being sped up unnecessarily
 var clockRunning = false;
-var time = 5;
+var time = 60;
 var lap = 1;
 
 var correct = 0;
@@ -18,7 +17,6 @@ var unanswered = 0;
 function start() {
     $("#gameStart").css("display","none")
     $("#game").css("display","inherit")
-    // DONE: Use setInterval to start the count here and set the clock to running.
     if (!clockRunning) {
       intervalId = setInterval(count, 1000);
       clockRunning = true;
@@ -32,15 +30,10 @@ if (time===0){
 
 function count() {
 
-    // DONE: increment time by 1, remember we cant use "this" here.
     time--;
   
-    // DONE: Get the current time, pass that into the timeConverter function,
-    //       and save the result in a variable.
     var converted = timeConverter(time);
-    console.log(converted);
   
-    // DONE: Use the variable we just created to show the converted time in the "display" div.
     $("#display").text(converted);
     if (time===0){
         clearInterval(intervalId);
@@ -72,14 +65,58 @@ function count() {
             } else{
                 unanswered++;
             }
+        var q4 = parseInt($('input[name=q3]:checked').val());
+            if (q4===1){
+                correct++;
+            } else if (q4===0){
+                wrong++;
+            } else{
+                unanswered++;
+            }
+        var q4 = parseInt($('input[name=q3]:checked').val());
+            if (q4===1){
+                correct++;
+            } else if (q4===0){
+                wrong++;
+            } else{
+                unanswered++;
+            }
+        var q5 = parseInt($('input[name=q3]:checked').val());
+            if (q5===1){
+                correct++;
+            } else if (q5===0){
+                wrong++;
+            } else{
+                unanswered++;
+            }
+        var q6 = parseInt($('input[name=q3]:checked').val());
+            if (q6===1){
+                correct++;
+            } else if (q6===0){
+                wrong++;
+            } else{
+                unanswered++;
+            }
+        var q7 = parseInt($('input[name=q3]:checked').val());
+            if (q7===1){
+                correct++;
+            } else if (q7===0){
+                wrong++;
+            } else{
+                unanswered++;
+            }
+         var q8 = parseInt($('input[name=q3]:checked').val());
+            if (q8===1){
+                correct++;
+            } else if (q8===0){
+                wrong++;
+            } else{
+                unanswered++;
+            }
             
         $("#correct").text(correct);
         $("#incorrect").text(wrong);
         $("#unanswered").text(unanswered);
-        console.log(correct)
-
-         
-
 
     }
 }
