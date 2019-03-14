@@ -42,46 +42,47 @@ function run() {
                 var id = inquirerResponse.id;
                 var newQuantity = parseInt(inquirerResponse.quantity);
                 //console.log(id, quantity)
-                var stock = function getStock(){
-                    
-                    connection.query('SELECT stock_quantity FROM products WHERE item_id = "' + id + '";', function (err, res) {
-                        if (err) throw err;
-                        //console.log(res);
-                        return res;
-                        
-                        //connection.end();
-                    });
-                };
-                
-                
-                //console.log(stock)
-                console.log(stock)
 
-                var query = connection.query(
-                    //UPDATE products SET `stock_quantity` = '5' WHERE `item_id` = 1 
-                    "UPDATE products SET ? WHERE ?",
-                    [
-                        {
-                            stock_quantity: newQuantity
-                        },
-                        {
-                            item_id: id
+                connection.query('SELECT stock_quantity FROM products WHERE item_id = "' + id + '";', function (err, res) {
+                    if (err) throw err;
+                    //console.log(res[0].stock_quantity);
+                    var stock = res[0].stock_quantity;
+                    //return res;
+                    var query = connection.query(
+                        //UPDATE products SET `stock_quantity` = '5' WHERE `item_id` = 1 
+                        "UPDATE products SET ? WHERE ?",
+                        [
+                            {
+                                stock_quantity: stock-newQuantity
+                            },
+                            {
+                                item_id: id
+                            }
+                        ],
+
+                        function (err, res) {
+                            // console.log(res.affectedRows + " products updated!\n");
+                            // // Call deleteProduct AFTER the UPDATE completes
+                            // deleteProduct();
                         }
-                    ],
 
-                    function (err, res) {
-                        // console.log(res.affectedRows + " products updated!\n");
-                        // // Call deleteProduct AFTER the UPDATE completes
-                        // deleteProduct();
-                    }
-                );
-                //console.log(query.values[0])
-                //console.log(query)
+                    );
+                    console.log(query.sql);
 
-                // logs the actual query being run
-                console.log(query.sql);
+                    connection.end();
             });
 
+
+        //console.log(stock)
+        //console.log(stock)
+
+
+        //console.log(query.values[0])
+        //console.log(query)
+
+        // logs the actual query being run
     });
+
+});
 
 };
