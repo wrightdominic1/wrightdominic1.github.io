@@ -25,7 +25,6 @@ function run() {
         if (err) throw err;
         // Log all results of the SELECT statement
         console.log(res);
-        //connection.end();
         inquirer
             .prompt([
                 {
@@ -41,48 +40,32 @@ function run() {
             ]).then(function (inquirerResponse) {
                 var id = inquirerResponse.id;
                 var newQuantity = parseInt(inquirerResponse.quantity);
-                //console.log(id, quantity)
 
-                connection.query('SELECT stock_quantity FROM products WHERE item_id = "' + id + '";', function (err, res) {
+                connection.query('SELECT stock_quantity, product_name FROM products WHERE item_id = "' + id + '";', function (err, res) {
                     if (err) throw err;
-                    //console.log(res[0].stock_quantity);
+                    console.log(res[0].product_name)
                     var stock = res[0].stock_quantity;
-                    //return res;
-                    var query = connection.query(
+                    var newStock = stock - newQuantity;
+                    var item = res[0].product_name;
+                    connection.query(
                         //UPDATE products SET `stock_quantity` = '5' WHERE `item_id` = 1 
                         "UPDATE products SET ? WHERE ?",
                         [
                             {
-                                stock_quantity: stock-newQuantity
+                                stock_quantity: newStock
                             },
                             {
                                 item_id: id
                             }
                         ],
-
-                        function (err, res) {
-                            // console.log(res.affectedRows + " products updated!\n");
-                            // // Call deleteProduct AFTER the UPDATE completes
-                            // deleteProduct();
-                        }
-
                     );
-                    console.log(query.sql);
-
+                    if (stock <= 0) {
+                        console.log("Our appologies, " + item + " are out of stock. " + item + " are on back order for " + Math.abs(newStock) + " total customers.")
+                    } else {
+                        console.log("Purchase successful! " + newStock + " " + item + " left.")
+                    }
                     connection.end();
+                });
             });
-
-
-        //console.log(stock)
-        //console.log(stock)
-
-
-        //console.log(query.values[0])
-        //console.log(query)
-
-        // logs the actual query being run
     });
-
-});
-
 };
