@@ -37,7 +37,7 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <!-- Reservation Page -->
+                <!-- Survey  -->
                 <div class="card">
                     <div class="card-header">
                         Survey
@@ -56,7 +56,8 @@
                                 </label>
                                 <input type="text" class="form-control" id="friend-pic">
                             </div>
-
+                            <h1><strong>Survey</strong></h1>
+                            <h5>(1-strongly disagree, 5-strongly agree)</h5>
                             <div class="question">
                                 <h3><strong>Question 1</strong></h3>
                                 <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
@@ -374,24 +375,16 @@
 
 </html>
 
-<!-- BELOW CODE IS CRITICAL. IT HANDLES HOW FORM DATA IS SENT TO OUR SERVER -->
 <script type="text/javascript">
-    // In this code below we create the Front-end JavaScript which "POSTS" our form data to our express server.
-    // In essence, when the user hits submit, jQuery grabs all of the fields then sends a post request to our api
-    // Our api recognizes the route (/api/tables)... and then runs the associated code (found in api-routes.js).
-    // In this case the associated code "saves" the data to the table-data.js file or waitinglist-data.js file
-
+    
     $(".submit").on("click", function (event) {
         event.preventDefault();
-        //modal
-        // $('#myModal').on('shown.bs.modal', function () {
-        //     $('#myInput').trigger('focus')
-        // })
+        
         // Here we grab the form elements
         var newFriend = {
             name: $("#friend-name").val().trim(),
             photo: $("#friend-pic").val().trim(),
-            score: [$('input[name=q1]:checked').val(),
+            scores: [$('input[name=q1]:checked').val(),
             $('input[name=q2]:checked').val(),
             $('input[name=q3]:checked').val(),
             $('input[name=q4]:checked').val(),
@@ -406,39 +399,32 @@
 
         };
 
-        console.log(newFriend);
+        //console.log(newFriend);
+        //console.log(newFriend.scores);
 
-        // This line is the magic. It"s very similar to the standard ajax function we used.
-        // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
-        // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
-        // depending on if a tables is available or not.
-
+        
         $.post("/api/friends", newFriend,
             function (data) {
 
-                // If a table is available... tell user they are booked.
+                // If a table is available... tell user they have a match.
                 if (data) {
-                    alert("Yay! You are officially booked!");
+                    alert("Yay! You got a match!");
                 }
 
-                // If a table is available... tell user they on the waiting list.
                 else {
-                    alert("Sorry you are on the wait list");
+                    alert("Sorry you didn't get a match");
                 }
 
                 // Clear the form when submitting
                 $("#friend-name").val("");
                 $("#friend-pic").val("");
+                
+                //console.log(data)
 
+                $("#matchName").text(data.name);
+                $("#matchPic").attr("src",data.photo);
 
             });
-
-        $.get("/api/friends", function (data) {
-            
-                $("#matchName").text( data[0].name);
-                $("#matchPic").attr("src",data[0].photo);
-                
-        });
 
     });
 

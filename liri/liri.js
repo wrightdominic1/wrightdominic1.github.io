@@ -15,14 +15,13 @@ var request = process.argv[3];
 if (command === "concert-this") {
   axios.get("https://rest.bandsintown.com/artists/" + request + "/events?app_id=codingbootcamp").then(
     function (response) {
-      var i = 18;
-      //for (i in response) {
-      console.log(response.data[i].venue.name + " " + response.data[i].venue.city + ", " + response.data[i].venue.region + " " + moment(response.data[i].venue.datetime).format('L'));
-      //};
+      for (i = 0; i < response.data.length; i++) {
+        console.log(response.data[i].venue.name + " " + response.data[i].venue.city + ", " + response.data[i].venue.region + " " + moment(response.data[i].datetime).format('L'));
+      };
     });
 } else if (command === "spotify-this-song") {
 
-  spotify.search({ type: 'track', query: "Tonight", limit: 10 }, function (err, data) {
+  spotify.search({ type: 'track', query: request, limit: 10 }, function (err, data) {
     if (err) {
       return console.log('Error occurred: ' + err);
     }
@@ -31,12 +30,11 @@ if (command === "concert-this") {
     var artistName;
     var preview;
     for (i = 0; i < data.tracks.items.length; i++) {
-      //songName = data.tracks.items[i].name;
-      //albumName = data.tracks.items[i].album.name;
+      songName = data.tracks.items[i].name;
+      albumName = data.tracks.items[i].album.name;
       artistName = data.tracks.items[i].album.artists[0].name;
-      //preview = data.tracks.items[i].preview_url;
-      console.log( artistName );
-      console.log(i)
+      preview = data.tracks.items[i].preview_url;
+      console.log(songName+" by "+artistName+" is off the album "+albumName+". \r\n URL: "+preview );
     }
 
     // var albumName = data.tracks.items[0].album.name
