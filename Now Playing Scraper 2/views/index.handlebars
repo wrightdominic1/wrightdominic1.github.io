@@ -1,0 +1,17 @@
+<div class="container">
+
+  <!-- Page Heading -->
+  <h1 class="mx-auto" style="width:300px;">
+    <a class="btn btn-dark" id="load" href="/all">View Showtimes</a>
+    <a class="btn btn-dark loadS" id="loadS" href="/saved">Saved Movies</a>
+  </h1>
+  <ul>
+    {{#each posts}}
+      {{> posts/post-block}}
+    {{/each}}
+    {{#each saved}}
+      {{> posts/saved-block}}
+    {{/each}}
+  </ul>
+
+</div>
